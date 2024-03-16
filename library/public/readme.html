@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time tracker readme</title>
+</head>
+
+<body style="margin: 2em;">
+<h1>Time tracker for MapTool</h1>
+<br />
+This Read Me can be re-read in MapTool at any time:
+<ol>
+<li>Go to File -> 'Add On Libraries'.</li>
+<li>Select Time_tracker from the list of add-ons.</li>
+<li>Click the Read Me button.</li>
+</ol>
+
+<br /><br />
+<h2>What is this?</h2>
+<p>DMs deserve nice things. Time_tracker is designed to help you keep track of a bunch of in-game stuff to make your life easier. Your players are having enough fun. It's ok for DMs to have nice things. A few things to note...</p>
+<ul>
+  <li>The time tracker is (at least for now) specific to the Forgotten Realms setting for Dungeons and Dragons. It tracks dates according to the Calendar of Harptos and illustrates the phases of Selûne.</li>
+  <li>Use this resource to help ease the DM info-tracking workload, and perhaps to bolster a description when creative energy is in a lull. Please don't consider this resource as something intended to limit your DMing in any way. For example, the time tracker plots moon cycles, but if you story calls for a dark night with a new moon then just fudge and/or hand-wave it as needed to tell your story.</li>
+  <li>I've implemented a 12-hour (am/pm) clock, but this isn't the typical way residents of Faerûn would tell the time. The 12-hour clock is more for the behind-the-scenes use of the DM, and for the convenience of measuring the passing of time in hours such as for short and long rests.</li>
+  <li>The time tracker represents sun and moon rise/set cycles and moon phases, assuming are the viewer is looking towards the south from the northern hemisphere (e.g. on the Sword Coast). The viewer has a very wide angle >180-degree lens, so the left side of the screen roughly represents 'east' and the right side of the screen roughly represents 'west', but this is <b>only</b> a representation not a 3D simulation.</li>
+</ul>
+
+<br /><br />
+<h2>Using the time tracker</h2>
+<p>When you first added the Time_tracker Add-on Library, a token was created (the words "Time_tracker" over a crescent moon). If you haven't already done so, select that token and go to Window -> Selected. You'll see some macro buttons in the 'Selected' dock (this is on the right side of the screen in my set-up, but might be elsewhere for you). Go to Window -> Campaign. You'll see a 'Campaign' dock, which is where campaign-wide macros can go. You should be able to drag and drop the macros from the Selected pane to the Campaign pane.<p>
+<p>Once you've dragged and dropped your macros into the Campaign dock, right click on them, select 'Edit', go to the 'Details' tab, and change the 'Hot Key' setting to something suitable to allow quick and easy access throughout your gaming.</p>
+<p>Once the macros are in the Campaign dock, there is no further need for the Time_tracker_macros token. You can delete that token.</p>
+<p>If you need to run the setup process again, resetting the Time_tracker to its default settings and recreating the Time_tracker_macros token, you can do so by copy/pasting the following into the chat window: <pre>[macro("onFirstInit@lib:icarean.0001.Time_tracker"):""]</pre></p>
+<p>If you need to manually alter the settings (e.g. to jump the tracker to a distant year), you can do so by copy/pasting the following into the chat window:
+<ul>
+<li><pre>[setLibProperty("currentYear", "lib:icarean.0001.Time_tracker"):""]</pre></li>
+<li><pre>[setLibProperty("currentDay", "lib:icarean.0001.Time_tracker"):""]</pre></li>
+<li><pre>[setLibProperty("currentTime", "lib:icarean.0001.Time_tracker"):""]</pre></li>
+</ul>
+</p>
+<p>Join a Palestine solidarity rally in your area. Seriously.</p>
+
+<br /><br />
+<h2>Change log</h2>
+<ul>
+  <li><b>This version: </b>Enable frame resizing (work in progress). New calendar view (limited functionality).</li>
+  <li><b>0.4.20231125: </b>Switched to Add-on Library to simplify installation. Settings macro to select 12/24h time display.</li>
+  <li><b>0.4.20231104: </b>First release.</li>
+</ul>
+
+<br /><br />
+<h2>Planned to-dos</h2>
+<ul>
+  <li>Settings button/macro to change 12/24h time format and other things like font size (24h request from tdue21)</li>
+  <li>Tides (e.g. https://www.tide-forecast.com/locations/Los-Angeles-California/tides/latest )</li>
+  <li>Better error message for missing images table (will the table still be needed if this is an add-on?)</li>
+  <li>Make an overlay banner instead of a frame (and smaller) (suggestion from aliasmask)</li>
+  <li>Time of day names implemented from https://forgottenrealms.fandom.com/wiki/Hours_of_the_day</li>
+  <li>Upcoming events calendar (supported by suggestion from tdue21 to have a visual calendar of some sort)</li>
+  <li>Record events that occur</li>
+  <li>Dawn/dusk time change with seasons</li>
+  <li>Ability to increase year/day/time by an amount other than plus/minus 1'</li>
+  <li>Maybe weather able to be generated and recorded?</li>
+  <li>Things such as weather and perhaps recording when visited linked to maps?</li>
+  <li>Moon properly faded in day time - this is expected to be achievable with css blending once MapTool 1.15 is released</li>
+</ul>
+
+<br /><br />
+<h2>Acknowledgements</h2>
+<ul>
+  <li>Significant early inspiration and assistance from PortEXE/Baaaaz and the <a href="https://discord.com/channels/296230822262865920/1097992814673018943">Maptool VanillaCalendar port</a>. Significant assistance from the awesome community in the MapTool Discord.</li>
+  <li>Moon image adapted from: <a href="https://www.publicdomainpictures.net/en/view-image.php?image=33794&picture=full-moon">Riaan Badenhorst's Full moon over Africa</a></li>
+  <li>Stars image adapted from: <a href="https://c.pxhere.com/photos/f5/2e/night_star_night_sky_hill_silhouette-1391820.jpg!d">Night sky</a></li>
+  <li><a href="https://www.pngall.com/grassland-png/download/51310">Grassland</a></li>
+  <li><a href="https://www.flickr.com/photos/ell-r-brown/4550812850">
+Elliott Brown's Perfect clear blue sky over Wood Dalling in Norfolk</a></li>
+  <li>Calendar of Harptos and Selûne information: <a href="https://forgottenrealms.fandom.com/wiki/Main_Page">Forgotten Realms Wiki</a></li>
+</ul>
+
+
+
+<br /><br />
+</body>
+</html>

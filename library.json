@@ -1,0 +1,14 @@
+{
+  "name": "Time_tracker",
+  "version": "0.4.20231126",
+  "website": "",
+  "gitUrl": "",
+  "authors": ["Serah Allison"],
+  "license": "Public domain (CC0)",
+  "namespace": "icarean.0001.Time_tracker",
+  "description": "A time tracker for the Forgotten Realms campaign setting",
+  "shortDescription": "A time tracker",
+  "allowsUriAccess": true,
+  "licenseFile": "licence.html",
+  "readMeFile": "public/readme.html"
+}

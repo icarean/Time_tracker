@@ -1,0 +1,17 @@
+**Time_tracker**
+
+Requires: MapTool 1.11 or later (wherein Add-on Libraries were implemented).
+Developed in: MapTool 1.14.rc4 on Ubuntu 23.10
+How to install: Drag and drop the .mtlib file from your file explorer onto the MapTool map, then follow the instructions in the Read Me which pops up.
+
+Bug reports and suggestions welcome.
+
+
+
+The .sh file runs a Bash (Linux) script to: 
+ 1. ZIP all files/directories
+ 2. Change extension to .mtlib
+ 3. Remove old addon, add new addon
+ 
+One day I'll make a .bat (Windows) batch file to do the same. Sorry, today is not that day.
+
