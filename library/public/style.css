@@ -4,39 +4,63 @@ body {
   background-color: #000000;
   color: white;
 }
-//table {
-//  border: 1px solid;
+table, tr, td {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0px;
 //  margin-left: auto;
 //  margin-right: auto;
-//}
+}
 tr {
   white-space: nowrap;
-  height: 30px;
+}
+tr.yearEtcInfo {
+  height: 3em;
 }
 td.pad {
   padding-right: 2em;
 }
-.label {
+td.label {
   text-align: right;
   font-size: calc(10px + 1vw);
 }
-.time {
+td.time {
   font-size: calc(12px + 2vw);
+  padding-left: 0.5em;
 }
-.control {
-  width: 3em;
+button.control {
+  width: 4em;
   cursor: pointer;
   background-color: cornsilk;
-  box-shadow: 0px 0px 2px blue;
+  opacity: 0.5;
+  box-shadow: 1px 1px 1px darkblue;
   border: none;
   outline: none;
-  padding: 5px;
+  padding: 3px;
   border-radius: 5px;
   color: black;
+  font-size: 9pt;
+  font-family: Arial, "Noto Sans", sans-serif;
 }
-.control:hover {
+button.control:hover {
   background-color: aliceblue;
-  box-shadow: 0px 0px 4px blue;
+}
+button.control:active {
+  box-shadow: 1px 1px 1px darkblue inset;
+  transform: translateY(1px);
+}
+td.timeInput {
+  opacity: 0.5;
+  background-color: grey;
+}
+input.timeInput {
+  opacity: 0.5;
+  width: 2ch;
+  font-family: "Lucida Console", "Courier New", monospace;
+  text-align: right;
+}
+.alignRight {
+  float: right;
 }
 .background-container {
   position: absolute;
@@ -89,25 +113,39 @@ td.pad {
   overflow: hidden;
 }
 .floatImage {
-  position: absolute;
-  z-index: -7;
+  position: fixed;
+  user-select: none;
 }
 
 /* Used by the calendar view */
-//#calendar {
-//  border: none;
-//  margin-left: auto;
-//  margin-right: auto;
-//}
-tbody.month {
-  outline: thin solid black;
+#calendar {
+  background-color: black;
+  color: white;
 }
-td.holiday {
+tbody.month {
+  outline: thin solid gray;
+}
+td.day {
   text-align: center;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+td.year {
+  text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
 }
 td.monthName {
   text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
   font-weight: bold;
+}
+td.extraDay {
+  text-align: center;
+}
+td.currentDay {
+  background-color: red;
 }
 
 /* Universal .js */

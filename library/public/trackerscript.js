@@ -7,7 +7,7 @@ let moonAboveHorizon = 0;
 const viewWidth = 1100;
 const compassPointInset = 150;
 const compassPointDistance = (viewWidth - (2 * compassPointInset)) / 2;  // Distance from E to S, and from S to W, in px
-const maxDebugDisplay = 5;
+const maxDebugDisplay = 10;
 let debugStrs = Array(maxDebugDisplay);
 let numDebugItems = 0;
 
@@ -95,8 +95,8 @@ function drawStuff() {
   x = compassPointInset - Math.cos(t) * compassPointDistance + (viewWidth / 2) - imgOffset + seasonXOffset;
   seasonYOffset = Math.sin((springDay / 365) * 2 * Math.PI) * (-60);
   y = ((-1) * Math.sin(t)) * 500 + 650 + seasonYOffset;
-  document.getElementById("sunPic").style.setProperty('top', y);
-  document.getElementById("sunPic").style.setProperty('left', x);
+  document.getElementById("sunPic").style.setProperty('top', y + 'px');
+  document.getElementById("sunPic").style.setProperty('left', x + 'px');
 }
 
 function updateMoon() {
@@ -132,16 +132,19 @@ function updateMoon() {
   x = compassPointInset + Math.sin(t) * compassPointDistance + (viewWidth / 2) - imgOffset + variationOffset;
   y = ((-1) * Math.cos(t)) * 500 + 700;
   r = Math.sin(t) * 45;
-  document.getElementById("moonPic").style.setProperty('top', y);
-  document.getElementById("moonPic").style.setProperty('left', x);
+  document.getElementById("moonPic").style.setProperty('left', x + 'px');
+  document.getElementById("moonPic").style.setProperty('top', y + 'px');
   document.getElementById("moonPic").style.setProperty('transform', 'rotate('+r+'deg)');
 }
 
 function addYear(y) {
-  currentYear += y;
-  setLibProperty("currentYear", currentYear);
-  document.getElementById('currentYear').innerHTML = currentYear + " DR";
-  drawStuff();
+  leapYear = (currentYear % 4) == 0;
+  maxDay = leapYear ? 366 : 365;
+  addDay(y * maxDay);
+}
+
+function addMonth(m) {
+  addDay(m * 30);
 }
 
 function addDay(d) {
@@ -150,20 +153,22 @@ function addDay(d) {
   maxDay = leapYear ? 366 : 365;
   if (currentDay <= 0) {
   	while (currentDay <= 0) {
-  	  addYear(-1);
+  	  currentYear += -1;
   	  leapYear = (currentYear % 4) == 0;
       maxDay = leapYear ? 366 : 365;
   	  currentDay += maxDay;
   	}
   } else if (currentDay > maxDay) {
   	while (currentDay > maxDay) {
-  	  addYear(1);
+  	  currentYear += 1;
   	  currentDay -= maxDay;
   	  leapYear = (currentYear % 4) == 0;
       maxDay = leapYear ? 366 : 365;
   	}
   }
   setLibProperty("currentDay", currentDay);
+  setLibProperty("currentYear", currentYear);
+  document.getElementById('currentYear').innerHTML = currentYear + " DR";
 
   if (currentDay <= 30) { dayName = currentDay; monthName = "Hammer"; }
   else if (currentDay == 31) { dayName = "Midwinter"; monthName = ""; }
@@ -188,7 +193,8 @@ function addDay(d) {
   else if (currentDay == 264+leapYear) extraFestival = "(Autumn Equinox)"
   else if (currentDay == 355+leapYear) extraFestival = "(Winter Solstice)"
   else extraFestival = " ";
-  document.getElementById('currentDay').innerHTML = monthName + " " + dayName;
+  document.getElementById('currentMonth').innerHTML = monthName;
+  document.getElementById('currentDay').innerHTML = dayName;
   document.getElementById('extraFestival').innerHTML = extraFestival;
 
   // Try to sort out seasons
@@ -225,13 +231,39 @@ function addTime(t) {
   drawStuff();
 }
 
+function allowOnlyDigits(event, maxNumber, allowLeadingZeros, previousValueElement) {
+  let inputElement = event.target;
+  let invalidCharacters = /[^\d]/;
+  inputElement.value = inputElement.value.replace(invalidCharacters, '');  // Filter everything except numerals
+  if (inputElement.value == '') {  // Replace empty value with 0
+    inputElement.value = 0;
+  } else {
+    if (inputElement.value > maxNumber) {
+      inputElement.value = document.getElementById(previousValueElement).getAttribute('data-value');  // Restore previous acceptable value
+    } else {
+      if (!allowLeadingZeros) {
+        inputElement.value = parseInt(inputElement.value);  // Remove leading 0s
+      }
+      document.getElementById(previousValueElement).setAttribute('data-value', inputElement.value);  // Save value in case needs to be restored
+    }
+  }
+}
+
 function initButtons() {
-  document.getElementById('decYear').addEventListener('click', () => addYear(-1));
-  document.getElementById('incYear').addEventListener('click', () => addYear(1));
-  document.getElementById('decDay').addEventListener('click', () => addDay(-1));
-  document.getElementById('incDay').addEventListener('click', () => addDay(1));
-  document.getElementById('decTime').addEventListener('click', () => addTime(-60));
-  document.getElementById('incTime').addEventListener('click', () => addTime(60));
+  document.getElementById('decYear').addEventListener('click', () => addYear(-1 * document.getElementById('inputYear').value));
+  document.getElementById('incYear').addEventListener('click', () => addYear(1 * document.getElementById('inputYear').value));
+  document.getElementById('decMonth').addEventListener('click', () => addMonth(-1 * document.getElementById('inputMonth').value));
+  document.getElementById('incMonth').addEventListener('click', () => addMonth(1 * document.getElementById('inputMonth').value));
+  document.getElementById('decDay').addEventListener('click', () => addDay(-1 * document.getElementById('inputDay').value));
+  document.getElementById('incDay').addEventListener('click', () => addDay(1 * document.getElementById('inputDay').value));
+  document.getElementById('decTime').addEventListener('click', () => addTime(-60 * document.getElementById('inputHour').value - 1 * document.getElementById('inputMinute').value));
+  document.getElementById('incTime').addEventListener('click', () => addTime(60 * document.getElementById('inputHour').value + 1 * document.getElementById('inputMinute').value));
+  
+  document.getElementById('inputYear').addEventListener('input', function(event) { allowOnlyDigits(event, 99, false, 'inputYearPrev'); });
+  document.getElementById('inputMonth').addEventListener('input', function(event) { allowOnlyDigits(event, 99, false, 'inputMonthPrev'); });
+  document.getElementById('inputDay').addEventListener('input', function(event) { allowOnlyDigits(event, 99, false, 'inputDayPrev'); });
+  document.getElementById('inputHour').addEventListener('input', function(event) { allowOnlyDigits(event, 99, false, 'inputHourPrev'); });
+  document.getElementById('inputMinute').addEventListener('input', function(event) { allowOnlyDigits(event, 59, true, 'inputMinutePrev'); });
 }
 
 // Thanks to Baaaaz and tdue21 for their assistance in developing this function
@@ -252,6 +284,9 @@ async function init() {
   currentDay = parseInt(await getLibProperty("currentDay"));
   currentTime = parseInt(await getLibProperty("currentTime"));
   timeFormat12h = parseInt(await getLibProperty("timeFormat12h"));
+  
+  document.getElementById("moonPic").style.zIndex = -7;
+  document.getElementById("sunPic").style.zIndex = -8;
   
   initButtons();
   addYear(0);

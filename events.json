@@ -1,5 +1,5 @@
 {
   "events": [
-    { "name": "onFirstInit", "mts": "public/onFirstInit" }
+    { "name": "onFirstInit", "mts": "onFirstInit" }
   ]
 }

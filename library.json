@@ -1,8 +1,8 @@
 {
   "name": "Time_tracker",
-  "version": "0.4.20231126",
-  "website": "",
-  "gitUrl": "",
+  "version": "0.51.20251127",
+  "website": "https://github.com/icarean/Time_tracker",
+  "gitUrl": "https://github.com/icarean/Time_tracker",
   "authors": ["Serah Allison"],
   "license": "Public domain (CC0)",
   "namespace": "icarean.0001.Time_tracker",

@@ -1,10 +1,10 @@
-Setting currentYear to default value: [r: currentYear = data.getStaticData("icarean.0001.Time_tracker", "property_defaults/currentYear")]
+Setting currentYear to default value: [r: currentYear = data.getStaticData("icarean.0001.Time_tracker", "public/property_defaults/currentYear")]
 [h: setLibProperty("currentYear", currentYear)]
-Setting currentDay to default value: [r: currentDay = data.getStaticData("icarean.0001.Time_tracker", "property_defaults/currentDay")]
+Setting currentDay to default value: [r: currentDay = data.getStaticData("icarean.0001.Time_tracker", "public/property_defaults/currentDay")]
 [h: setLibProperty("currentDay", currentDay)]
-Setting currentTime to default value: [r: currentTime = data.getStaticData("icarean.0001.Time_tracker", "property_defaults/currentTime")]
+Setting currentTime to default value: [r: currentTime = data.getStaticData("icarean.0001.Time_tracker", "public/property_defaults/currentTime")]
 [h: setLibProperty("currentTime", currentTime)]
-Setting timeFormat12h to default value: [r: timeFormat12h = data.getStaticData("icarean.0001.Time_tracker", "property_defaults/timeFormat12h")]
+Setting timeFormat12h to default value: [r: timeFormat12h = data.getStaticData("icarean.0001.Time_tracker", "public/property_defaults/timeFormat12h")]
 [h: setLibProperty("timeFormat12h", timeFormat12h)]
 
 Creating a token for macros.

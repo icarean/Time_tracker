@@ -21,48 +21,32 @@
 </div>
 <div class="foreground-container">
 <table>
-  <tr>
-    <td class="label">Year:</td>
+  <tr class="yearEtcInfo">
+    <td class="label timeInput">Year</td>
+    <td class="timeInput"><input type="number" class="timeInput alignRight" id="inputYear" value="1" onfocus="this.select()" onmouseup="return false" /><div id="inputYearPrev" data-value="1" hidden></div></td>
+    <td class="timeInput"><table><tr><td><button type="button" id="incYear" class="control"><b>+</b></button></td></tr><tr><td><button id="decYear" class="control"><b>-</b></button></td></tr></table></td>
     <td class="time" id="currentYear">-</td>
-    <td class="pad"></td>
-    <td><button id="decYear" class="control">-</button></td>
-    <td><button id="incYear" class="control">+</button></td>
-    <!-- <td class="pad"></td>
-    <td><div>+<input type="number" id="inputYear" style="width: 3em;">y</div></td>
-    <td><button id="applyYear" class="control">&#8227;</button></td> -->
   </tr>
-  <tr>
-    <td class="label">Day:</td>
-    <td id="currentDay" class="time" style="width: 10em;">-</td>
-    <td class="pad"></td>
-    <td><button id="decDay" class="control">-</button></td>
-    <td><button id="incDay" class="control">+</button></td>
-    <!-- <td class="pad"></td>
-    <td><div>+<input type="number" id="inputDay" style="width: 3em;">d</div></td>
-    <td><button id="applyDay" class="control">&#8227;</button></td> -->
+  <tr class="yearEtcInfo">
+    <td class="label timeInput">Month</td>
+    <td class="timeInput"><input type="number" class="timeInput alignRight" id="inputMonth" value="1" onfocus="this.select()" onmouseup="return false" /><div id="inputMonthPrev" data-value="1" hidden></div></td>
+    <td class="timeInput"><table><tr><td><button type="button" id="incMonth" class="control"><b>+</b></button></td></tr><tr><td><button id="decMonth" class="control"><b>-</b></button></td></tr></table></td>
+    <td id="currentMonth" class="time">-</td>
   </tr>
-  <tr>
-    <td></td>
-    <td><div id="extraFestival"> </div></td>
-    <td class="pad"></td>
-    <td></td>
-    <td></td>
-    <td class="pad"></td>
-    <td></td>
-    <td></td>
+  <tr class="yearEtcInfo">
+    <td class="label timeInput">Day</td>
+    <td class="timeInput"><input type="text" class="timeInput alignRight" id="inputDay" value="1" onfocus="this.select()" onmouseup="return false" /><div id="inputDayPrev" data-value="1" hidden></div></td>  <!-- The combo of onfocus and onmouseup enables auto-select. The hidden div is for restoring old value if too many digits are entered. --> 
+    <td class="timeInput"><table><tr><td><button type="button" id="incDay" class="control"><b>+</b></button></td></tr><tr><td><button id="decDay" class="control"><b>-</b></button></td></tr></table></td>
+    <td id="currentDay" class="time">-</td>
   </tr>
-  <tr>
-    <td class="label">Time:</td>
+  <tr class="yearEtcInfo">
+    <td class="label timeInput">Time</td>
+    <td class="timeInput"><input type="text" class="timeInput" id="inputHour" value="1" onfocus="this.select()" onmouseup="return false" /><div id="inputHourPrev" data-value="1" hidden></div>:<input type="text" class="timeInput" id="inputMinute" value="00" onfocus="this.select()" onmouseup="return false" /><div id="inputMinutePrev" data-value="00" hidden></div></td>
+    <td class="timeInput"><table><tr><td><button type="button" id="incTime" class="control"><b>+</b></button></td></tr><tr><td><button id="decTime" class="control"><b>-</b></button></td></tr></table></td>
     <td id="currentTime" class="time">-</td>
-    <td class="pad"></td>
-    <td><button id="decTime" class="control">-</button></td>
-    <td><button id="incTime" class="control">+</button></td>
-    <!-- <td class="pad"></td>
-    <td><div>+<input type="number" id="inputHour" style="width: 3em;">h</div></td>
-    <td><div><input type="number" id="inputMinute" style="width: 3em;">m</div></td>
-    <td><button id="applyTime" class="control">&#8227;</button></td> -->
   </tr>
 </table>
+<div id="extraFestival"> </div>
 <div>Season (pre-sundering): <span id="seasonInfo"></span></div>
 <div>Moon: <span id="moonInfo"></span></div>
 <div id="debug"></div>
